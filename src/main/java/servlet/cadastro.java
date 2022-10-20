@@ -39,8 +39,7 @@ public class cadastro extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		List<String> Testes = new ArrayList<>();
-		String teste = "";
+		List<String> sele = new ArrayList<>();
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
@@ -77,7 +76,7 @@ public class cadastro extends HttpServlet {
 			}
 				while(rs.next()) {
 				
-				Testes.add(rs.getString("titulo"));
+					sele.add(rs.getString("titulo"));
 				
 				}
 				
@@ -96,11 +95,8 @@ public class cadastro extends HttpServlet {
 		    
 		    
 		    
-		    for (int i = 0; i <= Testes.size() - 1; i++) {
-				   out.println(Testes.get(i) + "<br>"); 
-				
-				    // usa o atual e proximo
-				    // ...
+		    for (int i = 0; i <= sele.size() - 1; i++) {
+				   out.println(sele.get(i) + "<br>"); 
 				}
 		    
 	}

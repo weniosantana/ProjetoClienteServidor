@@ -27,5 +27,9 @@
 	<form ACTION="listaLivrosPorCategoria.jsp">
   	<input type="submit" value="LISTA DE LIVROS POR CATEGORIA">
 	</form>
+	<br>
+	<form ACTION="cadLivros.jsp">
+  	<input type="submit" value="CADASTRAR NOVOS LIVROS">
+	</form>
 </body>
 </html>
