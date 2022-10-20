@@ -18,7 +18,7 @@ public class DB {
 		
 		if(conn == null) {
 				try {
-					Class.forName("com.mysql.jdbc.Driver");
+					Class.forName("com.mysql.cj.jdbc.Driver");
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bdlivraria?useTimezone=true&serverTimezone=UTC","root","1234567");
 			}catch(SQLException e){
 				throw new DbException(e.getMessage());

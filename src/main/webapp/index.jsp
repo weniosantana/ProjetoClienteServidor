@@ -12,8 +12,32 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style>
+	.main{
+		margin: 0 auto;
+		text-align: center;
+		background-color: #c7b79f;
+		margin-left: 80px;
+		margin-right: 80px;
+		border-radius: 40px;
+		margin-top: 10%;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	.btn{
+	  height: 2rem;
+	  font-size: 1.1rem;
+	  border-radius: 5px;
+	  border: none;
+	  margin-top: 3px;
+	  background-color: #b5915c;
+	  color: black;
+	}
+
+</style>
 </head>
 <body>
+	<div class="main">
 	<h1>Projeto Sistema Cliente-Servidor</h1>
 	<hr>
 	<h2>Nomes e RGM dos Alunos:</h2>
@@ -25,11 +49,14 @@
 	<hr>
 	
 	<form ACTION="listaLivrosPorCategoria.jsp">
-  	<input type="submit" value="LISTA DE LIVROS POR CATEGORIA">
+  	<input class="btn" type="submit" value="LISTA DE LIVROS POR CATEGORIA">
 	</form>
-	<br>
 	<form ACTION="cadLivros.jsp">
-  	<input type="submit" value="CADASTRAR NOVOS LIVROS">
+  	<input class="btn" type="submit" value="CADASTRAR/DELETAR/ALTERAR NOVOS LIVROS">
 	</form>
+	<form ACTION="mostrarLivros.jsp">
+  	<input class="btn" type="submit" value="MOSTRAR LIVROS">
+	</form>
+	</div>
 </body>
 </html>

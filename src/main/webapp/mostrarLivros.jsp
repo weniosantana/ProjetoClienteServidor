@@ -5,7 +5,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-
 <style>
 .main{
 		margin: 0 auto;
@@ -44,27 +43,16 @@
 			margin-bottom:5px;	 	  
 	
 	}
-	label{
-		font-size:20px
-	}
+
 </style>
 </head>
 <body>
-
-<div class="main">
-	<form action="/ProjetoWeb/cadastro">
-	<label for="cat">Categoria:</label><br>
-		<select class="textarea" name="cat" id="cat">
-		  <option value="Arquitetura">Arquitetura</option>
-		  <option value="Desgin">Desgin</option>
-		  <option value="Infor">Informática</option>
-		  <option value="Litbras">Literatura brasileira</option>
-		  <option value="Litinf">Literatura infantil</option>
-		  <option value="Lituniv">Literatura universal</option>
-		  <option value="Musart">Música e arte</option>
-		</select><br>
-		<input class="btn" type="submit" value="CONSULTAR">
+	<div class="main">
+	<form action="/ProjetoWeb/mostrarLiv">
+		<label>Codigo do Livro:</label><br>
+		<input class="textarea" type="text" name="codlivroMos"><br>
+		<input class="btn" type="submit" value="MOSTRAR">
 	</form>
-</div>
+	</div>
 </body>
 </html>

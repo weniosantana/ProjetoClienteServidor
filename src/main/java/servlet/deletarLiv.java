@@ -17,53 +17,41 @@ import javax.servlet.http.HttpServletResponse;
 import db.DB;
 
 /**
- * Servlet implementation class livrosCad
+ * Servlet implementation class deletarLiv
  */
-@WebServlet("/livrosCad")
-public class livrosCad extends HttpServlet {
+@WebServlet("/deletarLiv")
+public class deletarLiv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public livrosCad() {
+    public deletarLiv() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		Connection conn = null;
 		Statement st1 = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
-		
+		int rowsAffected = 0;
 		try {
-			int codlivro = Integer.parseInt(request.getParameter("codlivro"));
-			String titulo =request.getParameter("titulo");
-			String autor =request.getParameter("autor");
-			String categoria =request.getParameter("categoria");
-			float valor = Float.parseFloat(request.getParameter("valor"));
-			
-			
-			
+			int codlivro = Integer.parseInt(request.getParameter("codlivroDel"));
 			conn = DB.getConnection();
-			
 			st = conn.prepareStatement(
-					"Insert into tblivros (codlivro, titulo, autor, categoria, valor) values (?,?,?,?,?)"
+					"DELETE FROM `bdlivraria`.`tblivros` WHERE (`codlivro` = ?)"
 					);
 			
 			st.setInt(1, codlivro);
-			st.setString(2, titulo);
-			st.setString(3, autor);
-			st.setString(4, categoria);
-			st.setFloat(5, valor);
 			
-			st.executeUpdate();
-						
+			rowsAffected = st.executeUpdate();
 			
+		    
 			
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -74,7 +62,7 @@ public class livrosCad extends HttpServlet {
 			
 		};
 	
-	
+		
 		PrintWriter out = response.getWriter();
 	    response.setContentType("text/html");
 	    out.println("<!DOCTYPE html>");
@@ -101,14 +89,17 @@ public class livrosCad extends HttpServlet {
 	    out.println("</head>");
 	    out.println("<body>");
 	    out.println("<div>");
-	    out.println("Livro Adicionado!");
+	    if(rowsAffected == 0) {
+	    	out.println("O codigo do livro inserido não existe!");
+	    }else {
+		    out.println("O livro foi excluido!");
+	    }
 	    out.println("<form action='index.jsp'><br>	<input class='btn' type='submit' value='VOLTAR'> </form>");
 	    out.println("</div>");
 	    out.println("</body>");
 	    out.println("</html>");	
+	    
 
-	    
-	    
 	    
 	}
 

@@ -2,15 +2,11 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
-import db.DB;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,17 +14,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import db.DB;
+
 /**
- * Servlet implementation class cadastro
+ * Servlet implementation class alterLiv
  */
-@WebServlet("/cadastro")
-public class cadastro extends HttpServlet {
+@WebServlet("/alterLiv")
+public class alterLiv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public cadastro() {
+    public alterLiv() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,63 +35,40 @@ public class cadastro extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		List<String> sele = new ArrayList<>();
+
 		Connection conn = null;
-		Statement st = null;
+		Statement st1 = null;
+		PreparedStatement st = null;
 		ResultSet rs = null;
+		int rowsAffected = 0;
 		try {
-			String te =request.getParameter("cat");
 			conn = DB.getConnection();
+			if(request.getParameter("codlivroUpd") == "" || request.getParameter("tituloUpd") == "" ||  request.getParameter("autorUpd") == "" || request.getParameter("categoriaUpd") == "" || request.getParameter("valorUpd") == "") 
+			{
+				PrintWriter out = response.getWriter();
+			    response.setContentType("text/html");
+			    out.println("Digite todos os dados do livro para alterar!");
+			}else {
+			int codlivro = Integer.parseInt(request.getParameter("codlivroUpd"));
+			String titulo = request.getParameter("tituloUpd");
+			String autor =request.getParameter("autorUpd");
+			String categoria =request.getParameter("categoriaUpd");
+			float valor = Float.parseFloat(request.getParameter("valorUpd"));
 			
-			st = conn.createStatement();
 			
+			st = conn.prepareStatement(
+					"UPDATE `bdlivraria`.`tblivros` SET `titulo` = ?, `autor` = ?, `categoria` = ?, `valor` = ? WHERE (`codlivro` = ?)"
+					);
+			st.setString(1, titulo);
+			st.setString(2, autor);
+			st.setString(3, categoria);
+			st.setFloat(4, valor);
+			st.setInt(5, codlivro);
 			
-			if(te.equals("Arquitetura")) {
-				rs = st.executeQuery("SELECT titulo FROM tblivros WHERE categoria LIKE 'Arquitetura'");
+			rowsAffected = st.executeUpdate();
 			}
-			if(te.equals("Desgin")) {
-				rs = st.executeQuery("SELECT titulo FROM tblivros WHERE categoria LIKE 'Desgin'");
-			}
-			if(te.equals("Infor")) {
-				rs = st.executeQuery("SELECT titulo FROM tblivros WHERE categoria LIKE 'Informática'");
-			}
-			if(te.equals("Litbras")) {
-				rs = st.executeQuery("SELECT titulo FROM tblivros WHERE categoria LIKE 'Literatura brasileira'");
-			}
-			
-			if(te.equals("Litinf")) {
-				rs = st.executeQuery("SELECT titulo FROM tblivros WHERE categoria LIKE 'Literatura infantil'");
-			}
-			
-			if(te.equals("Lituniv")) {
-				rs = st.executeQuery("SELECT titulo FROM tblivros WHERE categoria LIKE 'Literatura universal'");
-			}
-			
-			if(te.equals("Musart")) {
-				rs = st.executeQuery("SELECT titulo FROM tblivros WHERE categoria LIKE 'Música e arte'");
-			}
-				while(rs.next()) {
-				
-					sele.add(rs.getString("titulo"));
-				
-				}
-				
-			
-		}catch(SQLException e){
-			e.printStackTrace();
-			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		 	PrintWriter out = response.getWriter();
-		 	
+			PrintWriter out = response.getWriter();
 		    response.setContentType("text/html");
-		    
-		    
 		    out.println("<!DOCTYPE html>");
 		    out.println("<html>");
 		    out.println("<head>");
@@ -109,25 +84,33 @@ public class cadastro extends HttpServlet {
 		    out.println("margin-left:80px;");
 		    out.println("margin-right:80px;");
 		    out.println("border-radius: 40px;");
-		    out.println("padding-top: 15%;");
-		    out.println("padding-bottom: 15%;");
+		    out.println("padding-top: 2%;");
+		    out.println("padding-bottom: 25%;");
 		    out.println("background-color: #c7b79f;");
 		    out.println("border: 1px solid black;");
 		    out.println("}");
 		    out.println("</style>");
 		    out.println("</head>");
 		    out.println("<body>");
-		    
 		    out.println("<div>");
-		    out.println("Categorias:<br>");
-		    for (int i = 0; i <= sele.size() - 1; i++) {
-				   out.println(sele.get(i) + "<br>"); 
-				}
+		    out.println("<h1>Livro alterado!</h1>");
 		    out.println("<form action='index.jsp'><br>	<input class='btn' type='submit' value='VOLTAR'> </form>");
-
-		    out.print("</div>");
+		    out.println("</div>");
 		    out.println("</body>");
-		    out.println("</html>");
+		    out.println("</html>");		    
+		}catch(SQLException e){
+			e.printStackTrace();
+			
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			
+		};
+	
+		
+		PrintWriter out = response.getWriter();
+	    response.setContentType("text/html");
+	    out.println(rowsAffected);
 	}
 
 }
