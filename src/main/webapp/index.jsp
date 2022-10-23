@@ -44,11 +44,11 @@
 	<h1>Projeto Sistema Cliente-Servidor</h1>
 	<hr>
 	<h2>Nomes e RGM dos Alunos:</h2>
-	<h3>Arthur Moutinho</h3>
-	<h3>Isaac Monteiro</h3>
-	<h3>Ronald Borges</h3>
-	<h3>Vitor Barros</h3>
-	<h3>Wenio Santana</h3>
+	<h3>Arthur Moutinho Sublime RGM: 26337932</h3>
+	<h3>Isaac Lima Monteiro RGM: 27967182</h3>
+	<h3>Ronald Borges de Oliveira RGM: 26694298</h3>
+	<h3>Vitor Augusto Barros RGM: 26366771</h3>
+	<h3>Wenio Sousa Santana RGM: 25831810</h3>
 	<hr>
 	
 	<form ACTION="listaLivrosPorCategoria.jsp">
