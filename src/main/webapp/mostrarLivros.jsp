@@ -13,7 +13,7 @@
 		margin-left: 80px;
 		margin-right: 80px;
 		border-radius: 40px;
-		margin-top: 10%;
+		margin-top: 9%;
 		padding-top: 60px;
 		padding-bottom: 50px;
 		height: 100px;
@@ -43,7 +43,10 @@
 			margin-bottom:5px;	 	  
 	
 	}
-
+	body{
+		 background-image: url("fundo.jpg");
+	
+	}
 </style>
 </head>
 <body>

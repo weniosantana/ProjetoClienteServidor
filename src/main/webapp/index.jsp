@@ -20,7 +20,7 @@
 		margin-left: 80px;
 		margin-right: 80px;
 		border-radius: 40px;
-		margin-top: 10%;
+		margin-top: 9%;
 		padding-top: 10px;
 		padding-bottom: 10px;
 	}
@@ -33,7 +33,10 @@
 	  background-color: #b5915c;
 	  color: black;
 	}
-
+	body{
+		 background-image: url("fundo.jpg");
+	
+	}
 </style>
 </head>
 <body>

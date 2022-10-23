@@ -47,6 +47,10 @@
 	label{
 		font-size:20px
 	}
+	body{
+		 background-image: url("fundo.jpg");
+	
+	}
 </style>
 </head>
 <body>

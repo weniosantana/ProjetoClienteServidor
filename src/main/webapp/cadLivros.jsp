@@ -56,6 +56,10 @@
 		  margin-top:5px;
 		margin-bottom:5px;
 	}
+	body{
+		 background-image: url("fundo.jpg");
+	
+	}
 </style>
 </head>
 <body>

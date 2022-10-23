@@ -100,7 +100,7 @@ public class cadastro extends HttpServlet {
 		    out.println("<meta charset=\"utf-8\">");
 		    out.println("<title>Teste</title>");
 		    out.println("<style>");
-		    out.println("body {margin: 0; backgroud-color: #f5f2e9;}");   
+		    out.println("body {margin: 0; backgroud-color: #f5f2e9; background-image: url('fundo.jpg');}");   
 		    out.println("div {");   
 		    out.println("height: 100px;");
 		    out.println("text-align:center;");
